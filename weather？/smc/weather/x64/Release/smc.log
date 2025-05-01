@@ -1,0 +1,1 @@
+﻿LINK : fatal error LNK1295: “/OPT:NOREF”与“/LTCG:incremental”规范不兼容；链接时不使用“/LTCG:incremental”

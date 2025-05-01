@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to DUTCTF 2025!</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #00FF00;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    input[type="text"] {
+      background-color: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 8px;
+      width: 600px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button {
+      background-color: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    button:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      min-height: 30px;
+    }
+    a {
+      color: #00FF00;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #00CC00;
+    }
+    #welcome {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+    }
+    #typing {
+      font-size: 24px;
+      margin-bottom: 20px;
+      height: 30px;
+    }
+
+    .flash {
+      animation: flashAnim 0.5s ease-in-out;
+    }
+    @keyframes flashAnim {
+      0% { background-color: #000; }
+      50% { background-color: #0f0; }
+      100% { background-color: #000; }
+    }
+
+    .terminal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: #000;
+      animation: terminalAnim 1s infinite;
+    }
+    @keyframes terminalAnim {
+      0% { background: #000 url('https://via.placeholder.com/150x150/0000FF/FFFFFF?text=Terminal+Effect') repeat top left; }
+      100% { background: #000 url('https://via.placeholder.com/150x150/FF00FF/FFFFFF?text=Terminal+Effect') repeat top left; }
+    }
+  </style>
+</head>
+<body>
+
+  <h2 id="typing"></h2>
+  <input type="text" id="flagInput">
+  <button id="verifyButton">VERIFY</button>
+  <p id="result"></p>
+
+  <script type="module" src="main.js"></script>
+
+  <p id="welcome">
+    Welcome to <a href="https://lentinel.icu/" target="_blank">https://lentinel.icu/</a>
+  </p>
+
+  <div class="terminal"></div>
+
+  <script>
+    const text = "INPUT YOUR FLAG:";
+    const typingElement = document.getElementById("typing");
+    let idx = 0;
+
+    function typeWriter() {
+      if (idx < text.length) {
+        typingElement.innerHTML += text.charAt(idx);
+        idx++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+
+    window.onload = typeWriter;
+
+    const verifyButton = document.getElementById("verifyButton");
+    verifyButton.addEventListener("click", function() {
+      verifyButton.classList.add("flash");
+      setTimeout(() => verifyButton.classList.remove("flash"), 500);
+    });
+  </script>
+
+</body>
+</html>
